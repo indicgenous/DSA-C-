@@ -20,18 +20,32 @@ void insertathead(node* &head, int val)
     head=n;
 }
 
+void insertatmiddle( node * &head,int pos ,int data){
+  node * temp = head;
+  int cntr = 1;
+  while(cntr < pos-1){
+    temp=temp->next;
+    cntr++;
+  }
+
+  node * nodetoinsert = new node(data);
+  nodetoinsert->next=temp->next;
+  temp->next=nodetoinsert;
+
+}
+
 void insertattail(node * &tail,int d){
-node * no = new node(d);
-tail->next=no;
+node * newtail = new node(d);
+tail->next=newtail;
 tail=tail->next;
 
 }
 void display(node* head){
     node* temp =head;
     while (temp != NULL)
-    { cout << temp -> data << " ";
+    { cout << temp -> data << " -> ";
     temp=temp->next; }
-    cout << endl;  
+    cout << "NULL"<< endl;  
 }
 int main(){
 
@@ -44,6 +58,8 @@ display(head);
 insertathead(head,15);
 display(head);
 insertattail(tail,9);
+display(head);
+insertatmiddle(head,2,14);
 display(head);
 
 }
