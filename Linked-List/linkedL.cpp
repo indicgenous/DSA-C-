@@ -11,6 +11,9 @@ class node{
     this-> data=val;
     this-> next=NULL;
   }
+  ~node(){
+    cout<< " the memory location of the give position is free"<<endl;
+  }
 
 };
 
@@ -55,9 +58,32 @@ void insertatmiddle( node * &head,node* tail,int pos ,int data)  {
   node * nodetoinsert = new node(data);
   nodetoinsert->next=temp->next;
   temp->next=nodetoinsert;
-
 }
 
+// code for the deletion of the given node 
+void deletion(node * &head,int pos){
+//  deletion the first position
+ if(pos==1){
+    node * temp=head;
+    head=head->next;
+    temp->next=NULL;
+    delete(temp);
+ }
+ else{
+//  other position;
+ node * prev =NULL;
+ node * currt=head;
+
+    int cntr=1;
+    while(cntr<pos){
+        prev = currt;
+        currt=currt->next;
+        cntr++;
+    }
+    prev->next=currt->next;
+    currt->next=NULL;
+    delete currt; }
+}
 //  to display the whole Linked list using the HEAD
 void display(node* head){
     node* temp =head;
@@ -83,5 +109,8 @@ display(head);
 
 cout << "head " <<head->data<<endl;
 cout << "tail " <<tail->data<<endl;
+
+deletion(head,1);
+display(head);
 
 }
