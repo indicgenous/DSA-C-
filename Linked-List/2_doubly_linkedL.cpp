@@ -31,6 +31,33 @@ void insertattail(node * &tail,int val){
     newtail->prev=tail;
     tail=newtail;
 }
+// insert at any position 
+void insertany(node * &head,node * &tail,int pos ,int val){
+   
+    if(pos==1){
+        insertathead(head,val);
+        return;
+    }
+
+    node *temp =head;
+    int cntr=1;
+    while(cntr <pos-1){
+        temp=temp->next;
+        cntr++;
+    }
+
+    if(temp->next==NULL){
+        insertattail(tail,val);
+        return;
+    }
+    
+    // main logic 
+    node * newnode = new node(val);
+    newnode->next=temp->next;
+    temp->next->prev=newnode;
+    temp->next=newnode;
+    newnode->prev=temp;
+}
 
 // displays the linked list
 void display(node * &head){
@@ -63,4 +90,6 @@ int main(){
     insertattail(tail,0);
     display(head);
     size(head);
+    insertany(head,tail,2,99);
+    display(head);
 }
