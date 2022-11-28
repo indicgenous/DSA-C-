@@ -7,6 +7,7 @@ class node{
     node * next;
     node * prev;
 
+    // constructor
     node(int val){
         this->data=val;
         this->prev=NULL;
@@ -14,6 +15,15 @@ class node{
     }
 };
 
+// insertion at head
+void insertathead(node * &head,int val){
+    node * newhead= new node(val);
+    newhead -> next=head;
+    head -> prev=newhead;
+    head = newhead;
+}
+
+// displays the linked list
 void display(node * &head){
     node * temp =head;
     while(temp!=NULL){
@@ -22,6 +32,8 @@ void display(node * &head){
     }
     cout<<"NULL"<<endl;
 }
+
+// size of the linked list
 void size(node * &head){
     node * temp =head;
     int size=0;
@@ -35,5 +47,7 @@ void size(node * &head){
 int main(){
     node * newnode = new node(1);
     node * head =newnode;
-    size(head);
+    display(head);
+    insertathead(head,2);
+    display(head);
 }
