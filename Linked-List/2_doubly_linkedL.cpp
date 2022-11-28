@@ -15,12 +15,21 @@ class node{
     }
 };
 
-// insertion at head
+// insertion at head 
+// inserting a new node at the head position
 void insertathead(node * &head,int val){
     node * newhead= new node(val);
     newhead -> next=head;
     head -> prev=newhead;
     head = newhead;
+}
+
+// inserting a new node at tail
+void insertattail(node * &tail,int val){
+    node * newtail = new node(val);
+    tail->next=newtail;
+    newtail->prev=tail;
+    tail=newtail;
 }
 
 // displays the linked list
@@ -41,13 +50,17 @@ void size(node * &head){
         size++;
         temp=temp->next;
     }
-    cout<<size<<endl;
+    cout<<"   The size of the Linked list is :: "<<size<<endl;
 }
 
 int main(){
     node * newnode = new node(1);
     node * head =newnode;
+    node * tail = newnode;
     display(head);
     insertathead(head,2);
     display(head);
+    insertattail(tail,0);
+    display(head);
+    size(head);
 }
