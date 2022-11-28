@@ -117,5 +117,5 @@ cout << "tail " <<tail->data<<endl;
 deletion(head,tail,5);
 display(head);
 cout << "head " <<head->data<<endl;
-cout << "tail " <<tail->data<<endl;
+cout << "tail " <<tail->data<<endl; // problem here , to be solved .. .. .. .. 
 }
