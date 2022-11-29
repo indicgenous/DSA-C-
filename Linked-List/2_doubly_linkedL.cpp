@@ -18,18 +18,33 @@ class node{
 // insertion at head 
 // inserting a new node at the head position
 void insertathead(node * &head,int val){
-    node * newhead= new node(val);
-    newhead -> next=head;
-    head -> prev=newhead;
-    head = newhead;
+//   if head is NULL
+   if(head==NULL){
+    node * newhead=new node(val);
+    head=newhead;
+   }
+    else{
+        node * newhead= new node(val);
+        newhead -> next=head;
+        head -> prev=newhead;
+        head = newhead;
+    }
 }
 
 // inserting a new node at tail
-void insertattail(node * &tail,int val){
-    node * newtail = new node(val);
-    tail->next=newtail;
-    newtail->prev=tail;
-    tail=newtail;
+void insertattail(node * &head,node * &tail,int val){
+    // if tail is NULL
+    if(tail==NULL){ 
+        node * newail = new node(val);
+        tail=newail;
+        head = tail;
+    }
+    else{
+        node * newtail = new node(val);
+        tail->next=newtail;
+        newtail->prev=tail;
+        tail=newtail;
+    }
 }
 // insert at any position 
 void insertany(node * &head,node * &tail,int pos ,int val){
@@ -47,7 +62,7 @@ void insertany(node * &head,node * &tail,int pos ,int val){
     }
 
     if(temp->next==NULL){
-        insertattail(tail,val);
+        insertattail(head,tail,val);
         return;
     }
     
@@ -57,6 +72,10 @@ void insertany(node * &head,node * &tail,int pos ,int val){
     temp->next->prev=newnode;
     temp->next=newnode;
     newnode->prev=temp;
+}
+
+void deletion(node * &head){
+
 }
 
 // displays the linked list
@@ -81,15 +100,22 @@ void size(node * &head){
 }
 
 int main(){
-    node * newnode = new node(1);
-    node * head =newnode;
-    node * tail = newnode;
+    // node * newnode = new node(1);
+    node * head =NULL;
+    node * tail = NULL;
+    // display(head);
+    // insertathead(head,2);
+    // display(head);
+    // insertattail(head,tail,1);
+    // display(head);
+    // size(head);
+    // insertany(head,tail,2,99);
+    // display(head);
+
+    insertattail(head,tail,1);
     display(head);
-    insertathead(head,2);
+    insertattail(head,tail,2);
     display(head);
-    insertattail(tail,0);
-    display(head);
-    size(head);
-    insertany(head,tail,2,99);
+    insertathead(head,0);
     display(head);
 }

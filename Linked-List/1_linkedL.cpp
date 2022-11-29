@@ -21,9 +21,16 @@ class node{
 //  inserting at the head
 void insertathead(node* &head, int val)
 {
+  //   if head is NULL
+   if(head==NULL){
+    node * newhead=new node(val);
+    head=newhead;
+   }
+  else {
     node* n = new node(val);
     n->next =head;
     head=n;
+  }
 }
 
 // inserting at tail
@@ -61,6 +68,7 @@ void insertatmiddle( node * &head,node* tail,int pos ,int data)  {
   temp->next=nodetoinsert;
 }
 
+//  problem .. .. .. .. .. 
 // code for the deletion of the given node 
 void deletion(node * &head,node * tail,int pos){
 //  deletion the first position
