@@ -67,10 +67,8 @@ void insertatmiddle( node * &head,node* tail,int pos ,int data)  {
   nodetoinsert->next=temp->next;
   temp->next=nodetoinsert;
 }
-
-//  problem .. .. .. .. .. 
 // code for the deletion of the given node 
-void deletion(node * &head,node * tail,int pos){
+void deletion(node * &head,node * &tail,int pos){
 //  deletion the first position
  if(pos==1){
     node * temp=head;
@@ -79,7 +77,7 @@ void deletion(node * &head,node * tail,int pos){
     delete(temp);
  }
  else{
-//  other position;
+ //  other position;
  node * prev =NULL;
  node * currt=head;
 
@@ -88,6 +86,13 @@ void deletion(node * &head,node * tail,int pos){
         prev = currt;
         currt=currt->next;
         cntr++;
+    }
+    if(currt->next==NULL){
+      tail = prev;
+      tail->next = NULL;
+      currt->next = NULL;
+      delete currt;
+      return;
     }
     prev->next=currt->next;
     currt->next=NULL;
@@ -106,24 +111,24 @@ void display(node* head){
 }
 int main(){
 
-node * node1=new node(10);
-node * head =node1;
-node * tail =node1;
-display(head);
-insertathead(head,12);
-display(head);
-insertathead(head,15);
-display(head);
-insertattail(tail,9);
-display(head);
-insertatmiddle(head,tail,2,14);
-display(head);
+  node * node1=new node(10);
+  node * head =node1;
+  node * tail =node1;
+  display(head);
+  insertathead(head,12);
+  display(head);
+  insertathead(head,15);
+  display(head);
+  insertattail(tail,9);
+  display(head);
+  insertatmiddle(head,tail,2,14);
+  display(head);
 
-cout << "head " <<head->data<<endl;
-cout << "tail " <<tail->data<<endl;
+  cout << "head " <<head->data<<endl;
+  cout << "tail " <<tail->data<<endl;
 
-deletion(head,tail,5);
-display(head);
-cout << "head " <<head->data<<endl;
-cout << "tail " <<tail->data<<endl; // problem here , to be solved .. .. .. .. 
-}
+  deletion(head,tail,5);
+  display(head);
+  cout << "head " <<head->data<<endl;
+  cout << "tail " <<tail->data<<endl; 
+} 
