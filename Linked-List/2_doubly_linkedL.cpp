@@ -13,6 +13,10 @@ class node{
         this->prev=NULL;
         this->next=NULL;
     }
+
+    ~node(){
+        cout<<"The memory location is free "<<endl;
+    }
 };
 
 // insertion at head 
@@ -47,35 +51,63 @@ void insertattail(node * &head,node * &tail,int val){
     }
 }
 // insert at any position 
-void insertany(node * &head,node * &tail,int pos ,int val){
-   
+void insertatany(node *&head,node *&tail,int pos,int val){
+    // inserting at first pos
     if(pos==1){
         insertathead(head,val);
         return;
     }
-
-    node *temp =head;
+    node * temp=head;
     int cntr=1;
-    while(cntr <pos-1){
+    while(cntr<pos-1){
         temp=temp->next;
         cntr++;
     }
-
+    // inserting at last pos/tail
     if(temp->next==NULL){
         insertattail(head,tail,val);
         return;
     }
-    
-    // main logic 
-    node * newnode = new node(val);
+    // inserting at other pos
+    node* newnode = new node(val);
     newnode->next=temp->next;
     temp->next->prev=newnode;
     temp->next=newnode;
     newnode->prev=temp;
 }
 
-void deletion(node * &head){
-
+// deleting any node from linked list
+void deletion(node *&head,node * &tail,int pos){
+    // deleting the first node
+    if (pos==1){
+        node * temp=head;
+        head=head->next;
+        temp->next->prev=NULL;
+        temp->next=NULL;
+        delete temp;
+        return;
+    }
+    // other node of the linked list;
+    node * current = head;
+    int cntr=1;
+    while(cntr<pos){
+        current->prev=current;
+        current=current->next;
+        cntr++;
+    }
+    // deleting last node
+    if(current->next==NULL){
+        current->prev->next=NULL;
+        tail=tail->prev;
+        delete current;
+        return;
+    }
+    // deleting other node
+    current->prev->next=current->next;
+    current->next->prev=current->prev;
+    current->next=NULL;
+    current->prev=NULL;
+    delete current;
 }
 
 // displays the linked list
@@ -118,4 +150,7 @@ int main(){
     display(head);
     insertathead(head,0);
     display(head);
+    deletion(head,tail,3);
+    display(head);
+    cout<<head->next->prev->data<<endl;
 }
