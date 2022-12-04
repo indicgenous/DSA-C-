@@ -100,14 +100,21 @@ void deletion(node * &head,node * &tail,int pos){
 }
 //  to display the whole Linked list using the HEAD
 void display(node* head){
-    node* temp =head;
-    int size =0;
-    while (temp != NULL)
-    { cout << temp -> data << " -> ";
+  node* temp =head;
+  while (temp != NULL)
+  { cout << temp -> data << " -> ";
     temp=temp->next;
-    size++;}
-    cout << "NULL"<< endl;  
-    cout<<"the size is::"<<size<<endl;
+  }
+  cout << "NULL"<< endl;  
+}
+void size(node * &head){
+ node* temp =head;
+ int size=1;
+  while (temp != NULL){
+    temp=temp->next;
+    size ++;
+  }
+  cout << "The size of the linked list is :: "<<size<< endl; 
 }
 int main(){
 
