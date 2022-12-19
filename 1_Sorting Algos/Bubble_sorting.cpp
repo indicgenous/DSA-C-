@@ -29,8 +29,7 @@ void bubble2(int arr[],int len){
     }
     for(int k=0;k<len;k++){
             cout<<arr[k]<<" ";
-        }
-    
+    }
 }
 
 int main(){
