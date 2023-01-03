@@ -26,13 +26,54 @@ node* buildtree(node * root){
     }
 
     cout<<"Enter the data to be inserted in the left of "<<data<<endl;
-    buildtree(root->left);
+    root->left= buildtree(root->left);
     cout<<"Enter the data to be inserted in the right of "<<data<<endl;
-    buildtree(root->right);
+    root->right= buildtree(root->right);
     return root;
+}
+
+
+void inorder(node* root) {
+    //base case
+    if(root == NULL) {
+        return ;
+    }
+
+    inorder(root->left);
+    cout << root-> data << " ";
+    inorder(root->right);
+
+}
+
+void preorder(node * root){
+if(root==NULL){
+    return;
+}
+
+cout<<root->data<<" ";
+preorder(root->left);
+preorder(root->right);
+}
+
+void postorder(node * root){
+    if(root==NULL){
+        return;
+    }
+    postorder(root->left);
+    postorder(root->right);
+    cout<<root->data<<" ";
 }
 
 int main(){
     node* root = NULL;
-    buildtree(root);
+    root = buildtree(root);
+
+    cout<<"inorder is "<<" ";
+    inorder(root);
+    cout<<endl;
+    cout<<"postorder is "<<" ";
+    postorder(root);
+    cout<<endl;
+    cout<<"Preorder is "<<" ";
+    preorder(root);
 }
