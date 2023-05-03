@@ -42,7 +42,7 @@ tail=tail->next;
 }
 
 // inserting at middle or given position
-void insertatmiddle( node * &head,node* tail,int pos ,int data)  { 
+void insertatmiddle( node * &head,node* &tail,int pos ,int data)  { 
   
   //  inserting at the head position
   if (pos==1){
